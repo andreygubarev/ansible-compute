@@ -6,6 +6,7 @@ driver:
 platforms:
   - name: ubuntu-1
     groups:
+    - kubernetes
     - kubernetes_server
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
@@ -14,6 +15,7 @@ platforms:
     ssh_user: ubuntu
   - name: ubuntu-2
     groups:
+    - kubernetes
     - kubernetes_server
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
@@ -22,7 +24,7 @@ platforms:
     ssh_user: ubuntu
   - name: ubuntu-3
     groups:
-    - kubernetes_agent
+    - kubernetes
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
     image_arch: aarch64
