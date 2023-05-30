@@ -1,21 +1,11 @@
 ---
 k3s_version: v1.25.9+k3s1
 
-k3s_token: ""
+k3s_cluster_token: ""
+k3s_cluster_seed: ""
 
 k3s_service_name: k3s
 k3s_service_enabled: true
 
 k3s_command: /usr/local/bin/k3s
 k3s_command_args: ""
-k3s_command_args_init: >-
-  {% if groups['master'] | length > 1 %}
-    {% if ansible_hostname == hostvars[groups['master'][0]]['ansible_hostname'] %}
-      --cluster-init
-    {% else %}
-      --server https://{{ hostvars[groups['master'][0]].k3s_node_ip | split(",") | first | ansible.utils.ipwrap }}:6443
-    {% endif %}
-  {% endif %}
-  --token {{ k3s_token }}
-  {{ k3s_command_args | default("") }}
-
