@@ -12,21 +12,22 @@
   ansible.builtin.set_fact:
     k3s_cluster_seed: "{{ hostvars[groups['kubernetes_controlplane'][0]]['ansible_hostname'] }}"
 
-- name: Set k3s cluster seed status
-  ansible.builtin.stat:
-    path: /var/lib/rancher/k3s/server/node-token
-  when: ansible_hostname == k3s_cluster_seed
-  register: k3s_cluster_seed_running
+- name: Setup k3s cluster seed
+  block:
+    - name: Set k3s cluster seed status
+      ansible.builtin.stat:
+        path: /var/lib/rancher/k3s/server/node-token
+      register: k3s_cluster_seed_running
 
-- name: Setup k3s cluster node
-  ansible.builtin.import_tasks: 030-setup.yml
+    - name: Setup k3s cluster seed
+      ansible.builtin.import_tasks: 030-setup.yml
+      when: not k3s_cluster_seed_running.stat.exists
+
+    - name: Update k3s cluster seed status
+      ansible.builtin.stat:
+        path: /var/lib/rancher/k3s/server/node-token
+      register: k3s_cluster_seed_running
   when: ansible_hostname == k3s_cluster_seed
 
-- name: Refresh k3s cluster seed status
-  ansible.builtin.stat:
-    path: /var/lib/rancher/k3s/server/node-token
-  when: ansible_hostname == k3s_cluster_seed
-  register: k3s_cluster_seed_running
-
-- name: Setup k3s cluster node
+- name: Setup k3s cluster nodes
   ansible.builtin.import_tasks: 030-setup.yml
