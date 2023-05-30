@@ -1,0 +1,26 @@
+namespace: andreygubarev
+name: kubernetes
+version: 1.0.0
+
+readme: README.md
+
+authors:
+  - Andrey Gubarev <andrey@andreygubarev.com> (andreygubarev.com)
+
+description: Ansible collection for kubernetes
+license_file: LICENSE
+
+tags: []
+
+dependencies: {}
+
+repository: https://github.com/andreygubarev/ansible-kubernetes
+documentation: https://github.com/andreygubarev/ansible-kubernetes
+homepage: https://github.com/andreygubarev/ansible-kubernetes
+issues: https://github.com/andreygubarev/ansible-kubernetes/issues
+
+build_ignore:
+  - Makefile
+  - .venv
+  - .git
+  - .gitignore
