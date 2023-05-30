@@ -6,7 +6,6 @@ driver:
 platforms:
   - name: ubuntu-1
     groups:
-    - kubernetes
     - kubernetes_server
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
@@ -15,7 +14,6 @@ platforms:
     ssh_user: ubuntu
   - name: ubuntu-2
     groups:
-    - kubernetes
     - kubernetes_server
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
@@ -24,7 +22,7 @@ platforms:
     ssh_user: ubuntu
   - name: ubuntu-3
     groups:
-    - kubernetes
+    - kubernetes_agent
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
     image_arch: aarch64
@@ -32,5 +30,14 @@ platforms:
     ssh_user: ubuntu
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      all:
+        k3s_cluster_token: "secret"
+        k3s_cluster_seed: "ubuntu-1"
+      kubernetes_server:
+        k3s_node_role: server
+      kubernetes_agent:
+        k3s_node_role: agent
 verifier:
   name: testinfra
