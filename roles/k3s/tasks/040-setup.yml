@@ -27,6 +27,10 @@
     state: "{{ k3s_service_state }}"
     enabled: "{{ k3s_service_enabled }}"
 
-- name: Wait for node-token
+- name: Wait for k3s to be ready
   ansible.builtin.wait_for:
     path: /var/lib/rancher/k3s/server/node-token
+
+- name: Set k3s cluster seed status
+  ansible.builtin.set_fact:
+    k3s_node_running: true

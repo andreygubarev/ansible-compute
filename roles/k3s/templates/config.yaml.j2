@@ -1,5 +1,5 @@
 token: {{ k3s_cluster_token }}
 
-{% if ansible_hostname == k3s_cluster_seed and not k3s_cluster_seed_running %}
+{% if k3s_node_seed and not k3s_node_running %}
 cluster-init: true
 {% endif %}

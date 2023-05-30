@@ -2,21 +2,12 @@
 - name: Register k3s cluster seed status
   ansible.builtin.stat:
     path: /var/lib/rancher/k3s/server/node-token
-  register: k3s_cluster_seed_running
+  register: k3s_node_running
 
 - name: Set k3s cluster seed status
   ansible.builtin.set_fact:
-    k3s_cluster_seed_running: "{{ k3s_cluster_seed_running.stat.exists }}"
+    k3s_node_running: "{{ k3s_node_running.stat.exists }}"
 
 - name: Setup k3s cluster seed node
   ansible.builtin.import_tasks: 040-setup.yml
-  when: not k3s_cluster_seed_running
-
-- name: Update k3s cluster seed status
-  ansible.builtin.stat:
-    path: /var/lib/rancher/k3s/server/node-token
-  register: k3s_cluster_seed_running
-
-- name: Set k3s cluster seed status
-  ansible.builtin.set_fact:
-    k3s_cluster_seed_running: "{{ k3s_cluster_seed_running.stat.exists }}"
+  when: not k3s_node_running
