@@ -4,7 +4,12 @@ dependency:
 driver:
   name: molecule-qemu
 platforms:
-  - name: instance
+  - name: ubuntu-1
+    image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
+    image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
+    image_arch: aarch64
+    ssh_port: 10022
+    ssh_user: ubuntu
 provisioner:
   name: ansible
 verifier:
