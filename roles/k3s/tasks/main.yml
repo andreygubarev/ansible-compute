@@ -5,30 +5,11 @@
 - name: Download
   ansible.builtin.import_tasks: 020-download.yml
 
-- name: Create transient systemd service
-  ansible.builtin.command:
-    cmd: >
-      systemd-run
-      -p RestartSec=2
-      -p Restart=on-failure
-      --unit=k3s-init
-      {{ k3s_command }} server {{ k3s_command_args_init }}
-    creates: /etc/systemd/system/k3s.service
+- name: Initialize
+  ansible.builtin.import_tasks: 030-initialize.yml
 
-- name: Create systemd service
-  ansible.builtin.template:
-    src: k3s.service.j2
-    dest: "/etc/systemd/system/{{ k3s_service_name }}.service"
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Ensure service is started and enabled
-  ansible.builtin.systemd:
-    daemon_reload: true
-    name: "{{ k3s_service_name }}"
-    state: restarted
-    enabled: "{{ k3s_service_enabled }}"
+- name: Service
+  ansible.builtin.import_tasks: 040-service.yml
 
 - name: Wait for node-token
   ansible.builtin.wait_for:

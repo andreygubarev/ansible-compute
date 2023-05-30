@@ -1,0 +1,15 @@
+---
+- name: Create systemd service
+  ansible.builtin.template:
+    src: k3s.service.j2
+    dest: "/etc/systemd/system/{{ k3s_service_name }}.service"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure service is started and enabled
+  ansible.builtin.systemd:
+    daemon_reload: true
+    name: "{{ k3s_service_name }}"
+    state: restarted
+    enabled: "{{ k3s_service_enabled }}"

@@ -1,0 +1,10 @@
+---
+- name: Create transient systemd service
+  ansible.builtin.command:
+    cmd: >
+      systemd-run
+      -p RestartSec=2
+      -p Restart=on-failure
+      --unit=k3s-init
+      {{ k3s_command }} server {{ k3s_command_args_init }}
+    creates: /etc/systemd/system/k3s.service
