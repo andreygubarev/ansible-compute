@@ -3,3 +3,7 @@ token: {{ k3s_cluster_token }}
 {% if k3s_node_seed and not k3s_node_running %}
 cluster-init: true
 {% endif %}
+
+{% if k3s_node_role_server %}
+write-kubeconfig-mode: "0644"
+{% endif %}
