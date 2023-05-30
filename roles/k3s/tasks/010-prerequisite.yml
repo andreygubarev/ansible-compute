@@ -19,3 +19,9 @@
     value: "2"
     state: present
     reload: true
+
+- name: Create k3s configuration folder
+  ansible.builtin.file:
+    path: /etc/rancher/k3s/config.yaml.d/
+    state: directory
+    mode: "0755"
