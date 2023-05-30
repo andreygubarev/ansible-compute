@@ -1,4 +1,6 @@
 ---
+# TODO: wait for cluster seed port to be open
+
 - name: Create k3s cluster config
   ansible.builtin.template:
     src: config.yaml.j2
