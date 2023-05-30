@@ -4,6 +4,10 @@
     that:
       - k3s_cluster_token is defined
       - k3s_cluster_token != ""
+      - k3s_cluster_seed is defined
+      - k3s_cluster_seed != ""
+      - k3s_node_role is defined
+      - k3s_node_role in ["server", "agent"]
 
 - name: Assert architecture
   ansible.builtin.assert:
