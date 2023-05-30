@@ -1,4 +1,7 @@
 ---
+- name: Assert configuration
+  ansible.builtin.import_tasks: 000-assertions.yml
+
 - name: Prerequisite
   ansible.builtin.import_tasks: 010-prerequisite.yml
 
