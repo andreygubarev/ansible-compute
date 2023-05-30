@@ -4,3 +4,10 @@
     that:
       - k3s_token is defined
       - k3s_token != ""
+
+- name: Assert architecture
+  ansible.builtin.assert:
+    that:
+      - ansible_facts.architecture == "x86_64" or
+        ansible_facts.architecture is search("aarch64") or
+        ( ansible_facts.architecture is search("arm") and ansible_facts.userspace_bits == "64" )
