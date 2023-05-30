@@ -1,4 +1,10 @@
 ---
+- name: Assert configuration
+  ansible.builtin.assert:
+    that:
+      - k3s_token is defined
+      - k3s_token != ""
+
 - name: Enable IPv4 forwarding
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward

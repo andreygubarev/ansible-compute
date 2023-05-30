@@ -1,6 +1,8 @@
 ---
 k3s_version: v1.25.9+k3s1
 
+k3s_token: ""
+
 k3s_service_name: k3s
 k3s_service_enabled: true
 

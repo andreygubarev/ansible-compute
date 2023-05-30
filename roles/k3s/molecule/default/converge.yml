@@ -2,6 +2,8 @@
 - name: Converge
   hosts: all
   become: true
+  vars:
+    k3s_token: "secret"
   tasks:
     - name: "Include k3s"
       ansible.builtin.include_role:
