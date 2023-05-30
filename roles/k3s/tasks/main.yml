@@ -5,12 +5,12 @@
 - name: Download
   ansible.builtin.import_tasks: 020-download.yml
 
-- name: Initialize
-  ansible.builtin.import_tasks: 030-initialize.yml
-
-- name: Service
-  ansible.builtin.import_tasks: 040-service.yml
+- name: Cluster Initialization
+  ansible.builtin.import_tasks: 030-cluster-init.yml
 
 - name: Wait for node-token
   ansible.builtin.wait_for:
     path: /var/lib/rancher/k3s/server/node-token
+
+- name: Service
+  ansible.builtin.import_tasks: 040-service.yml
