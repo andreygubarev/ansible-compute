@@ -5,6 +5,8 @@ driver:
   name: molecule-qemu
 platforms:
   - name: ubuntu-1
+    groups:
+    - kubernetes_controlplane
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
     image_arch: aarch64
