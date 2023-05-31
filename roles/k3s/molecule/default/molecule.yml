@@ -10,24 +10,24 @@ platforms:
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
     image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
     image_arch: aarch64
-    ssh_port: 10022
     ssh_user: ubuntu
-  - name: ubuntu-2
-    groups:
-    - kubernetes_server
-    image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
-    image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
-    image_arch: aarch64
-    ssh_port: 10023
-    ssh_user: ubuntu
-  - name: ubuntu-3
-    groups:
-    - kubernetes_agent
-    image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
-    image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
-    image_arch: aarch64
-    ssh_port: 10024
-    ssh_user: ubuntu
+    vm_network: vmnet-shared
+  # - name: ubuntu-2
+  #   groups:
+  #   - kubernetes_server
+  #   image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
+  #   image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
+  #   image_arch: aarch64
+  #   ssh_user: ubuntu
+  #   vm_network: vmnet-shared
+  # - name: ubuntu-3
+  #   groups:
+  #   - kubernetes_agent
+  #   image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
+  #   image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
+  #   image_arch: aarch64
+  #   ssh_port: 10024
+  #   ssh_user: ubuntu
 provisioner:
   name: ansible
   inventory:
