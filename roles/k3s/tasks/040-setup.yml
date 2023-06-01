@@ -31,7 +31,7 @@
 
 - name: Wait for k3s to be ready
   ansible.builtin.wait_for:
-    path: /var/lib/rancher/k3s/server/node-token
+    path: "/var/lib/rancher/k3s/{{ k3s_node_role }}"
 
 - name: Set k3s cluster seed status
   ansible.builtin.set_fact:
