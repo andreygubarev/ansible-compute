@@ -8,6 +8,40 @@
   ansible.builtin.set_fact:
     k3s_node_running: "{{ k3s_node_running.stat.exists }}"
 
-- name: Setup k3s cluster seed node
-  ansible.builtin.import_tasks: 040-setup.yml
+- name: Setup k3s cluster seed
   when: not k3s_node_running
+  block:
+    - name: Create k3s manifests directory
+      ansible.builtin.file:
+        path: /var/lib/rancher/k3s/server/manifests
+        state: directory
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Create kube-vip manifest for rbac
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/kube-vip/kube-vip/{{ kubevip_version }}/docs/manifests/rbac.yaml"
+        dest: "/var/lib/rancher/k3s/server/manifests/kubevip-rbac.yaml"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Create kube-vip manifest for daemonset
+      ansible.builtin.template:
+        src: "kubevip.yaml.j2"
+        dest: "/var/lib/rancher/k3s/server/manifests/kubevip-daemonset.yaml"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Setup k3s cluster seed node
+      ansible.builtin.import_tasks: 040-setup.yml
+
+    - name: Wait for k3s cluster seed node to be ready
+      ansible.builtin.wait_for:
+        host: "{{ k3s_cluster_seed_endpoint }}"
+        port: 6443
+        delay: 5
+        timeout: 300
+        state: started
