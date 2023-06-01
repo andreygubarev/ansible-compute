@@ -19,6 +19,24 @@
         group: root
         mode: 0644
 
+    - name: Disable traefik addon
+      ansible.builtin.file:
+        path: /var/lib/rancher/k3s/server/manifests/traefik.yaml.skip
+        state: touch
+        owner: root
+        group: root
+        mode: 0644
+      when: not k3s_addon_traefik_enabled
+
+    - name: Disable local-storage addon
+      ansible.builtin.file:
+        path: /var/lib/rancher/k3s/server/manifests/local-storage.yaml.skip
+        state: touch
+        owner: root
+        group: root
+        mode: 0644
+      when: not k3s_addon_localstorage_enabled
+
     - name: Create kube-vip manifest for rbac
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/kube-vip/kube-vip/{{ kubevip_version }}/docs/manifests/rbac.yaml"
