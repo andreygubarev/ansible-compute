@@ -4,7 +4,7 @@ dependency:
 driver:
   name: molecule-qemu
 platforms:
-  - name: ubuntu-1
+  - name: server-1
     groups:
     - kubernetes_server
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
@@ -12,7 +12,7 @@ platforms:
     image_arch: aarch64
     ssh_user: ubuntu
     vm_network: vmnet-shared
-  - name: ubuntu-2
+  - name: agent-1
     groups:
     - kubernetes_agent
     image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
@@ -20,21 +20,14 @@ platforms:
     image_arch: aarch64
     ssh_user: ubuntu
     vm_network: vmnet-shared
-  # - name: ubuntu-3
-  #   groups:
-  #   - kubernetes_agent
-  #   image: https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-arm64.img
-  #   image_checksum: sha256:https://cloud-images.ubuntu.com/focal/current/SHA256SUMS
-  #   image_arch: aarch64
-  #   ssh_port: 10024
-  #   ssh_user: ubuntu
 provisioner:
   name: ansible
   inventory:
     group_vars:
       all:
         k3s_cluster_token: "secret"
-        k3s_cluster_seed: "ubuntu-1"
+        k3s_cluster_seed: "server-1"
+        k3s_cluster_seed_endpoint: "192.168.64.100"
       kubernetes_server:
         k3s_node_role: server
       kubernetes_agent:
