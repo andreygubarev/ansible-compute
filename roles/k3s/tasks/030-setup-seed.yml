@@ -56,7 +56,7 @@
     - name: Setup k3s cluster seed node
       ansible.builtin.import_tasks: 040-setup.yml
 
-    - name: Wait for k3s cluster seed node to be ready
+    - name: Wait for k3s cluster seed endpoint to be ready
       ansible.builtin.wait_for:
         host: "{{ k3s_cluster_seed_endpoint }}"
         port: 6443
