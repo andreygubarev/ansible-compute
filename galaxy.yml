@@ -1,5 +1,5 @@
 namespace: andreygubarev
-name: compute
+name: kubernetes
 version: 1.0.0
 
 readme: README.md
@@ -14,10 +14,10 @@ tags: []
 
 dependencies: {}
 
-repository: https://github.com/andreygubarev/ansible-compute
-documentation: https://github.com/andreygubarev/ansible-compute
-homepage: https://github.com/andreygubarev/ansible-compute
-issues: https://github.com/andreygubarev/ansible-compute/issues
+repository: https://github.com/andreygubarev/ansible-kubernetes
+documentation: https://github.com/andreygubarev/ansible-kubernetes
+homepage: https://github.com/andreygubarev/ansible-kubernetes
+issues: https://github.com/andreygubarev/ansible-kubernetes/issues
 
 build_ignore:
   - Makefile
