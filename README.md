@@ -1,4 +1,4 @@
-# `andreygubarev.kubernetes`
+# `andreygubarev.compute`
 
 Ansible collection for kubernetes
 
@@ -7,10 +7,10 @@ Ansible collection for kubernetes
 To install this collection use the `ansible-galaxy` command-line tool:
 
 ```sh
-ansible-galaxy collection install andreygubarev.kubernetes
+ansible-galaxy collection install andreygubarev.compute
 ```
 
 # Reference
 
-- [Ansible Galaxy](https://galaxy.ansible.com/andreygubarev/kubernetes) - Find more information and download the collection.
-- [Source Code](https://github.com/andreygubarev/ansible-kubernetes) - Access the collection's source code on Github.
+- [Ansible Galaxy](https://galaxy.ansible.com/andreygubarev/compute) - Find more information and download the collection.
+- [Source Code](https://github.com/andreygubarev/ansible-compute) - Access the collection's source code on Github.

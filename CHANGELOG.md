@@ -1,1 +1,1 @@
-# `andreygubarev.kubernetes`
+# `andreygubarev.compute`
