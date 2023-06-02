@@ -13,6 +13,9 @@ k3s_cluster_feature_gates:
 - TopologyAwareHints=true
 
 k3s_command: /usr/local/bin/k3s
+k3s_command_extra_args:
+  server: ""
+  agent: ""
 k3s_command_args:
   server: >
     {% for feature_gates in k3s_cluster_feature_gates %}
@@ -22,11 +25,13 @@ k3s_command_args:
     --kube-proxy-arg=feature-gates={{ feature_gates }}
     --kubelet-arg=feature-gates={{ feature_gates}}
     {% endfor %}
+    {{ k3s_command_extra_args.server }}
   agent: >
     {% for feature_gates in k3s_cluster_feature_gates %}
     --kube-proxy-arg=feature-gates={{ feature_gates }}
     --kubelet-arg=feature-gates={{ feature_gates }}
     {% endfor %}
+    {{ k3s_command_extra_args.agent }}
 
 k3s_addon_traefik_enabled: false
 k3s_addon_localstorage_enabled: false
