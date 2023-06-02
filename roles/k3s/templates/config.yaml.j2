@@ -1,5 +1,12 @@
 token: {{ k3s_cluster_token }}
 
+{% if k3s_node_label %}
+node-label:
+{% for label in k3s_node_label %}
+- "{{ label }}"
+{% endfor %}
+{% endif %}
+
 {% if k3s_node_seed and not k3s_node_running %}
 cluster-init: true
 {% endif %}

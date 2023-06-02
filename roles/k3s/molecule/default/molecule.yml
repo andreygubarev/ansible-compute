@@ -39,6 +39,23 @@ platforms:
 provisioner:
   name: ansible
   inventory:
+    host_vars:
+      server-1:
+        k3s_node_label:
+          - topology.kubernetes.io/region=us-east-1
+          - topology.kubernetes.io/zone=us-east-1a
+      agent-1:
+        k3s_node_label:
+          - topology.kubernetes.io/region=us-east-1
+          - topology.kubernetes.io/zone=us-east-1b
+      agent-2:
+        k3s_node_label:
+          - topology.kubernetes.io/region=us-east-1
+          - topology.kubernetes.io/zone=us-east-1c
+      agent-3:
+        k3s_node_label:
+          - topology.kubernetes.io/region=us-east-1
+          - topology.kubernetes.io/zone=us-east-1d
     group_vars:
       all:
         k3s_cluster_token: "secret"
