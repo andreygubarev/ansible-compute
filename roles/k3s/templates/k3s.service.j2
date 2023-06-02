@@ -9,7 +9,7 @@ After=network-online.target
 Type=notify
 ExecStartPre=-/sbin/modprobe br_netfilter
 ExecStartPre=-/sbin/modprobe overlay
-ExecStart={{ k3s_command }} {{ k3s_node_role }} {{ k3s_command_args | default("") }}
+ExecStart={{ k3s_command }} {{ k3s_node_role }} {{ k3s_command_args[k3s_node_role] }}
 KillMode=process
 Delegate=yes
 

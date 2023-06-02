@@ -47,15 +47,15 @@ provisioner:
       agent-1:
         k3s_node_label:
           - topology.kubernetes.io/region=us-east-1
-          - topology.kubernetes.io/zone=us-east-1b
+          - topology.kubernetes.io/zone=us-east-1a
       agent-2:
         k3s_node_label:
           - topology.kubernetes.io/region=us-east-1
-          - topology.kubernetes.io/zone=us-east-1c
+          - topology.kubernetes.io/zone=us-east-1b
       agent-3:
         k3s_node_label:
           - topology.kubernetes.io/region=us-east-1
-          - topology.kubernetes.io/zone=us-east-1d
+          - topology.kubernetes.io/zone=us-east-1c
     group_vars:
       all:
         k3s_cluster_token: "secret"
