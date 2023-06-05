@@ -35,3 +35,4 @@ k3s_command_args:
 
 k3s_addon_traefik_enabled: false
 k3s_addon_localstorage_enabled: false
+k3s_addon_kubevip_enabled: false

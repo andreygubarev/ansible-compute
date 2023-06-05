@@ -44,6 +44,7 @@
         owner: root
         group: root
         mode: 0644
+      when: k3s_addon_kubevip_enabled
 
     - name: Create kube-vip manifest for daemonset
       ansible.builtin.template:
@@ -52,6 +53,7 @@
         owner: root
         group: root
         mode: 0644
+      when: k3s_addon_kubevip_enabled
 
     - name: Setup k3s cluster seed node
       ansible.builtin.import_tasks: 040-setup.yml
