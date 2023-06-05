@@ -1,6 +1,6 @@
 token: {{ k3s_cluster_token }}
 
-{% if k3s_node_label %}
+{% if k3s_node_label is defined %}
 node-label:
 {% for label in k3s_node_label %}
 - "{{ label }}"
