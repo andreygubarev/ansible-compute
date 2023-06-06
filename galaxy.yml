@@ -1,6 +1,6 @@
 namespace: andreygubarev
 name: kubernetes
-version: 1.0.0
+version: 0.1.0  # noqa: galaxy[version-incorrect]
 
 readme: README.md
 
@@ -10,7 +10,11 @@ authors:
 description: Ansible collection for kubernetes
 license_file: LICENSE
 
-tags: []
+tags:
+  - application
+  - kubernetes
+  - infrastructure
+  - networking
 
 dependencies: {}
 

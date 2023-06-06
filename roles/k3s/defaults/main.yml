@@ -25,7 +25,7 @@ k3s_command_args:
     --kube-scheduler-arg=feature-gates={{ feature_gates }}
     --kube-controller-manager-arg=feature-gates={{ feature_gates }}
     --kube-proxy-arg=feature-gates={{ feature_gates }}
-    --kubelet-arg=feature-gates={{ feature_gates}}
+    --kubelet-arg=feature-gates={{ feature_gates }}
     {% endfor %}
     {% if k3s_flannel_interface != "" %}
     --flannel-iface={{ k3s_flannel_interface }}
