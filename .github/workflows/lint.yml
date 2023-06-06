@@ -1,4 +1,4 @@
-name: Ansible Linter
+name: Ansible Lint
 
 on: [push]
 
