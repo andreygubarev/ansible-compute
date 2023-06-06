@@ -1,6 +1,6 @@
 name: Ansible Linter
 
-on: [pull_request]
+on: [push]
 
 jobs:
   lint:
