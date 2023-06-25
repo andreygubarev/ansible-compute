@@ -9,6 +9,7 @@ k3s_cluster_seed_endpoint: 192.168.64.100
 
 k3s_service_name: k3s
 k3s_service_enabled: true
+k3s_service_statedir: /var/lib/rancher/k3s
 
 k3s_flannel_interface: ""
 
@@ -31,6 +32,7 @@ k3s_command_args:
     {% if k3s_flannel_interface != "" %}
     --flannel-iface={{ k3s_flannel_interface }}
     {% endif %}
+    --data-dir={{ k3s_service_statedir }}
     {{ k3s_command_extra_args.server }}
   agent: >
     {% for feature_gates in k3s_cluster_feature_gates %}
@@ -40,6 +42,7 @@ k3s_command_args:
     {% if k3s_flannel_interface != "" %}
     --flannel-iface={{ k3s_flannel_interface }}
     {% endif %}
+    --data-dir={{ k3s_service_statedir }}
     {{ k3s_command_extra_args.agent }}
 
 k3s_addon_traefik_enabled: false
