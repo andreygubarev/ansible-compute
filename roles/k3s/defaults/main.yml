@@ -10,6 +10,7 @@ k3s_cluster_seed_endpoint: 192.168.64.100
 k3s_service_name: k3s
 k3s_service_enabled: true
 k3s_service_statedir: /var/lib/rancher/k3s
+k3s_service_confdir: /etc/rancher/k3s
 
 k3s_flannel_interface: ""
 
@@ -22,6 +23,7 @@ k3s_command_extra_args:
   agent: ""
 k3s_command_args:
   server: >
+    --config {{ k3s_service_confdir }}/config.yaml
     {% for feature_gates in k3s_cluster_feature_gates %}
     --kube-apiserver-arg=feature-gates={{ feature_gates }}
     --kube-scheduler-arg=feature-gates={{ feature_gates }}
@@ -35,6 +37,7 @@ k3s_command_args:
     --data-dir={{ k3s_service_statedir }}
     {{ k3s_command_extra_args.server }}
   agent: >
+    --config {{ k3s_service_confdir }}/config.yaml
     {% for feature_gates in k3s_cluster_feature_gates %}
     --kube-proxy-arg=feature-gates={{ feature_gates }}
     --kubelet-arg=feature-gates={{ feature_gates }}
