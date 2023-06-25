@@ -16,7 +16,9 @@ tags:
   - infrastructure
   - networking
 
-dependencies: {}
+dependencies: {
+  "ansible.posix": ">=1.0.0,<2.0.0",
+}
 
 repository: https://github.com/andreygubarev/ansible-kubernetes
 documentation: https://github.com/andreygubarev/ansible-kubernetes
