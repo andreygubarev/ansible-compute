@@ -19,6 +19,14 @@
     mode: 0644
   register: k3s_service
 
+- name: Create k3s state directory
+  ansible.builtin.file:
+    path: "{{ k3s_service_statedir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Set k3s service state based on k3s_config
   ansible.builtin.set_fact:
     k3s_service_state: "{{ 'restarted' if k3s_config.changed or k3s_service.changed or k3s_binary.changed else 'started' }}"
@@ -32,7 +40,7 @@
 
 - name: Wait for k3s to be ready
   ansible.builtin.wait_for:
-    path: "/var/lib/rancher/k3s/{{ k3s_node_role }}"
+    path: "{{ k3s_service_statedir }}/{{ k3s_node_role }}"
 
 - name: Set k3s cluster seed status
   ansible.builtin.set_fact:
