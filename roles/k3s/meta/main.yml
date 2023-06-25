@@ -1,3 +1,6 @@
+---
+dependencies: []
+
 galaxy_info:
   author: Andrey Gubarev <andrey@andreygubarev.com> (andreygubarev.com)
   description: Ansible role for setting up K3S
@@ -8,10 +11,11 @@ galaxy_info:
   min_ansible_version: '7.0.0'
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - focal
+    - name: Debian
+      versions:
+        - bullseye
+    - name: Ubuntu
+      versions:
+      - focal
 
   galaxy_tags: []
-
-dependencies: []
